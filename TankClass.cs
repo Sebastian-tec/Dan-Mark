@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.InteropServices; // For optional function in a method paramter
+using static System.Console;
 
 namespace FishTank
 {
@@ -31,6 +28,79 @@ namespace FishTank
             FoodCycle = foodCycle;
             IsClean = CleanTank();
             FeedFish = FishFeeded();
+            
+            if (FishInTank == null)
+            {
+                FishInTank = new List<FishClass>();
+            }
+        }
+
+        public static void AddFishToTank(FishClass fish, [Optional] int tankId)
+        {
+            if (tankId == 0)
+            {
+                foreach (TankClass tank in StockClass.TankSortiment)
+                {        
+                    if (tank.WaterType != fish.WaterType)
+                    {
+                        Console.WriteLine("Fisken passede ikke i dette akvarie.");
+                        return;
+                    }
+                    
+                    if (tank.FoodType != fish.FoodType)
+                    {
+                        Console.WriteLine("Fisken passede ikke i dette akvarie.");
+                        return;
+                    }
+                    Console.WriteLine("Tilføjer fisk...");
+                    tank.AddFish(tank, fish);
+                }
+            }
+            //Console.WriteLine("Add Fish...");
+            //if (tankId != 0 && tankId != -1)
+            //{
+            //    Console.WriteLine("Tank id is not null");
+            //    foreach (TankClass tank in StockClass.TankSortiment)
+            //    {
+            //        Console.WriteLine("For each loop");
+            //        if (tank.ID == tankId)
+            //        {
+            //            if (tank.WaterType == fish.WaterType && tank.FoodType == fish.FoodType)
+            //            {
+            //                Console.WriteLine("Adding fish...");
+            //                tank.AddFish(tank, fish);
+            //                Console.WriteLine("Fish added");
+            //            }
+            //            else if (tank.WaterType != fish.WaterType)
+            //            {
+            //                WriteLine("Denne fisk skal have anden type vand.");
+            //                //StockClass.ReturnToMainMenu();
+            //            }
+            //            else if (tank.FoodType != fish.FoodType)
+            //            {
+            //                WriteLine("Denne fisk skal have en anden type mad.");
+            //                //StockClass.ReturnToMainMenu();
+            //            }
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Tank id is null");
+            //    foreach (TankClass tank in StockClass.TankSortiment)
+            //    {
+            //        Console.WriteLine($"ID: {tank.ID}");
+            //        if (tank.WaterType == fish.WaterType && tank.FoodType == fish.FoodType)
+            //        {
+            //            Console.WriteLine("Adding fish...");
+            //            tank.AddFish(tank, fish);
+            //            Console.WriteLine("Fish added");
+            //        }
+            //    }
+            //}
+
+            //WriteLine("Fisken er tiløjet en tank!");
+            ////StockClass.ReturnToMainMenu();
         }
 
         public bool CleanTank()
@@ -93,7 +163,7 @@ namespace FishTank
             }
         }
 
-        public void AddFish(FishClass fish, TankClass tank)
+        public void AddFish(TankClass tank, FishClass fish)
         {
             tank.FishInTank.Add(fish);
         }

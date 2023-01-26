@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Github\\FishTank\\FishTank.csproj": {}
+    "E:\\Github\\Dan-Mark\\FishTank.csproj": {}
   },
   "projects": {
-    "E:\\Github\\FishTank\\FishTank.csproj": {
+    "E:\\Github\\Dan-Mark\\FishTank.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Github\\FishTank\\FishTank.csproj",
+        "projectUniqueName": "E:\\Github\\Dan-Mark\\FishTank.csproj",
         "projectName": "FishTank",
-        "projectPath": "E:\\Github\\FishTank\\FishTank.csproj",
+        "projectPath": "E:\\Github\\Dan-Mark\\FishTank.csproj",
         "packagesPath": "C:\\Users\\snr7\\.nuget\\packages\\",
-        "outputPath": "E:\\Github\\FishTank\\obj\\",
+        "outputPath": "E:\\Github\\Dan-Mark\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\snr7\\AppData\\Roaming\\NuGet\\NuGet.Config",

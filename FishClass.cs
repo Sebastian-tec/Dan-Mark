@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FishTank
+﻿namespace FishTank
 {
     public enum Food { Meat, Flakes };
     public enum Water { Saltwater, Freshwater };
@@ -15,11 +9,10 @@ namespace FishTank
         public int FoodCycle      { get; set; } // Hours between feedings
         public DateTime Born      { get; set; } 
         public int Age            { get; set; }
-        public int TankId         { get; set; }
         public Food FoodType;
         public Water WaterType;
 
-        public FishClass(string name, Food foodType, Water waterType, Decimal price, int foodCycle, DateTime born, int tankId)
+        public FishClass(string name, Food foodType, Water waterType, Decimal price, int foodCycle, DateTime born)
         {
             Name = name;
             FoodType = foodType;

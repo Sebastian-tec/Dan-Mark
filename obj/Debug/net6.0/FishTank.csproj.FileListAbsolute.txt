@@ -1,0 +1,15 @@
+E:\Github\Dan-Mark\bin\Debug\net6.0\FishTank.exe
+E:\Github\Dan-Mark\bin\Debug\net6.0\FishTank.deps.json
+E:\Github\Dan-Mark\bin\Debug\net6.0\FishTank.runtimeconfig.json
+E:\Github\Dan-Mark\bin\Debug\net6.0\FishTank.dll
+E:\Github\Dan-Mark\bin\Debug\net6.0\FishTank.pdb
+E:\Github\Dan-Mark\obj\Debug\net6.0\FishTank.csproj.AssemblyReference.cache
+E:\Github\Dan-Mark\obj\Debug\net6.0\FishTank.GeneratedMSBuildEditorConfig.editorconfig
+E:\Github\Dan-Mark\obj\Debug\net6.0\FishTank.AssemblyInfoInputs.cache
+E:\Github\Dan-Mark\obj\Debug\net6.0\FishTank.AssemblyInfo.cs
+E:\Github\Dan-Mark\obj\Debug\net6.0\FishTank.csproj.CoreCompileInputs.cache
+E:\Github\Dan-Mark\obj\Debug\net6.0\FishTank.dll
+E:\Github\Dan-Mark\obj\Debug\net6.0\refint\FishTank.dll
+E:\Github\Dan-Mark\obj\Debug\net6.0\FishTank.pdb
+E:\Github\Dan-Mark\obj\Debug\net6.0\FishTank.genruntimeconfig.cache
+E:\Github\Dan-Mark\obj\Debug\net6.0\ref\FishTank.dll
