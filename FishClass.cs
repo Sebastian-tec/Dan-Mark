@@ -8,7 +8,7 @@
         public Decimal Price      { get; set; }
         public int FoodCycle      { get; set; } // Hours between feedings
         public DateTime Born      { get; set; } 
-        public int Age            { get; set; }
+        public double Age         { get; set; }
         public Food FoodType;
         public Water WaterType;
 
@@ -23,25 +23,26 @@
             Age = GetAge();
         }
 
-        public int GetAge()
+        public double GetAge()
         {
-            Age = DateTime.Now.Year - Born.Year;
-            
-            if (Age <= 0)
-            {
-                Age = DateTime.Now.Month - Born.Month;
-
-                if (Age <= 0)
-                {
-                    Age = DateTime.Now.Day - Born.Day;
-                }
-            }
-
-            if (DateTime.Now.DayOfYear < Born.DayOfYear)
-            {
-                Age--;
-            }
+            Age = (DateTime.Now - Born).TotalDays;
             return Age;
+        }
+        public string GetAgeInfo(DateTime born)
+        {
+            double daysAlive = (DateTime.Now - born).TotalDays;
+            
+            if (daysAlive < 365)
+            {
+                if (daysAlive < 30)
+                    return $"{daysAlive:N0} dag(e)";
+                else
+                    return $"{daysAlive / 30:N0} måned(er)";
+            }
+            else
+            {
+                return $"{daysAlive / 365:N0} år";
+            }
         }
     }
 }

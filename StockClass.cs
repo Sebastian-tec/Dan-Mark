@@ -22,7 +22,7 @@ namespace FishTank
             {
                 WriteLine($"Fisk nr. { i + 1 }");
                 WriteLine($"Race: { fish.Name }");
-                WriteLine($"Alder: {fish.Age} år");
+                WriteLine($"Alder: {fish.GetAgeInfo(fish.Born)}");
                 WriteLine($"Pris: { fish.Price } DKK");
                 WriteLine($"Mad: { fish.FoodType }");
                 WriteLine($"Vand: { fish.WaterType }");
@@ -63,7 +63,7 @@ namespace FishTank
 
             WriteLine("Dan & Marks akvarium har følgende fisketanke i sortiment");
             WriteLine("********************************************************" + Environment.NewLine);
-
+            
             foreach (TankClass item in TankSortiment)
             {
                 WriteLine($"ID: { item.ID }");
@@ -277,7 +277,7 @@ namespace FishTank
             FishClass Trout = new FishClass("Trout", Food.Meat, Water.Saltwater, 21.99m, DateTime.Now.AddDays(-32));
             FishSortiment.Add(Trout);
             TankClass.AddFishToTank(Trout);
-            FishClass Goldfish = new FishClass("Goldfish", Food.Flakes, Water.Freshwater, 9.99m, DateTime.Now.AddDays(-12));
+            FishClass Goldfish = new FishClass("Goldfish", Food.Flakes, Water.Freshwater, 9.99m, DateTime.Now.AddYears(-3));
             FishSortiment.Add(Goldfish);
             TankClass.AddFishToTank(Goldfish);
             FishClass Platy = new FishClass("Platy", Food.Flakes, Water.Freshwater, 19.99m, DateTime.Now.AddDays(-2));
