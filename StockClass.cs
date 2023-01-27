@@ -65,12 +65,12 @@ namespace FishTank
 
             foreach (TankClass item in TankSortiment)
             {
-                WriteLine($"ID: {item.ID}");
-                WriteLine($"Størrelse: {item.TankSize} liter");
-                WriteLine($"Mad: {item.FoodType}");
-                WriteLine($"Vand: {item.WaterType}");
-                WriteLine($"Rensecyklus: {item.CleaningCycle} timer");
-                WriteLine($"Pris: {item.Price} DKK");
+                WriteLine($"ID: { item.ID }");
+                WriteLine($"Størrelse: { item.TankSize } liter");
+                WriteLine($"Mad: { item.FoodType }");
+                WriteLine($"Vand: { item.WaterType }");
+                WriteLine($"Rensecyklus: { item.CleaningCycle } timer");
+                WriteLine($"Pris: { item.Price } DKK");
                 Write($"Fish types: ");
 
                 if (item.FishInTank == null || item.FishInTank.Count < 1)
@@ -92,7 +92,7 @@ namespace FishTank
             }
 
             WriteLine(Environment.NewLine + "Ønsker du at:");
-            WriteLine("1. Tilføje en fisk til soritment");
+            WriteLine("1. Tilføje en fisk til sortiment");
             WriteLine("2. Fjerne en fisk fra sortiment");
             WriteLine("3. Vende tilbage til hovedmenuen");
 
@@ -158,6 +158,23 @@ namespace FishTank
             WriteLine("Det ønskede akvarie er nu fjernet fra sortiment. Tryk en tast for at vende tilbage til oversigten...");
             ReadKey();
             ViewAllFishTanks();
+        }
+
+        public void AddFishToSortiment()
+        {
+            WriteLine();
+            Write("Hvad er navnet på fiskens type?");
+            string fishName = ReadLine();
+            Write("Spiser fisken kød eller flakes: ");
+            string foodInput = ReadLine().ToLower();
+
+
+            FishClass newFish = new FishClass(fishName, );
+        }
+
+        public void AddTankToSortiment()
+        {
+
         }
 
         public void AddTestFishToSortiment()

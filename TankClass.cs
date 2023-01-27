@@ -9,7 +9,7 @@ namespace FishTank
         public double TankSize            { get; set; } // Størrelsen på akvariet i kubikmeter
         public Food FoodType;
         public Water WaterType;
-        public int CleaningCycle          { get; set; } // int, som i procent angiver en grænse for, hvor beskidt akvariet kan blive
+        public int CleaningCycle          { get; set; } // int, som i procent angiver en grænse for, hvor beskidt akvariet må blive
         public Decimal Price              { get; set; }
         public int FoodCycle              { get; set; }
         public List<FishClass> FishInTank { get; set; }
@@ -55,51 +55,6 @@ namespace FishTank
                     tank.AddFish(tank, fish);
                 }
             }
-            //Console.WriteLine("Add Fish...");
-            //if (tankId != 0 && tankId != -1)
-            //{
-            //    Console.WriteLine("Tank id is not null");
-            //    foreach (TankClass tank in StockClass.TankSortiment)
-            //    {
-            //        Console.WriteLine("For each loop");
-            //        if (tank.ID == tankId)
-            //        {
-            //            if (tank.WaterType == fish.WaterType && tank.FoodType == fish.FoodType)
-            //            {
-            //                Console.WriteLine("Adding fish...");
-            //                tank.AddFish(tank, fish);
-            //                Console.WriteLine("Fish added");
-            //            }
-            //            else if (tank.WaterType != fish.WaterType)
-            //            {
-            //                WriteLine("Denne fisk skal have anden type vand.");
-            //                //StockClass.ReturnToMainMenu();
-            //            }
-            //            else if (tank.FoodType != fish.FoodType)
-            //            {
-            //                WriteLine("Denne fisk skal have en anden type mad.");
-            //                //StockClass.ReturnToMainMenu();
-            //            }
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Tank id is null");
-            //    foreach (TankClass tank in StockClass.TankSortiment)
-            //    {
-            //        Console.WriteLine($"ID: {tank.ID}");
-            //        if (tank.WaterType == fish.WaterType && tank.FoodType == fish.FoodType)
-            //        {
-            //            Console.WriteLine("Adding fish...");
-            //            tank.AddFish(tank, fish);
-            //            Console.WriteLine("Fish added");
-            //        }
-            //    }
-            //}
-
-            //WriteLine("Fisken er tiløjet en tank!");
-            ////StockClass.ReturnToMainMenu();
         }
 
         public bool CleanTank()
