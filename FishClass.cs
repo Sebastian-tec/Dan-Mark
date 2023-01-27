@@ -12,13 +12,13 @@
         public Food FoodType;
         public Water WaterType;
 
-        public FishClass(string name, Food foodType, Water waterType, Decimal price, int foodCycle, DateTime born)
+        public FishClass(string name, Food foodType, Water waterType, Decimal price, DateTime born)
         {
             Name = name;
             FoodType = foodType;
             WaterType = waterType;
             Price = price;
-            FoodCycle = foodCycle;
+            FoodCycle = TankClass.GetFoodCycle(foodType);
             Born = born;
             Age = GetAge();
         }

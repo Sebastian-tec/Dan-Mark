@@ -17,17 +17,17 @@ namespace FishTank
         public bool FeedFish              { get; set; }
         private static int id;
 
-        public TankClass(double tankSize, Food foodType, Water waterType, int cleaningCycle, Decimal price, int foodCycle)
+        public TankClass(double tankSize, Food foodType, Water waterType, Decimal price)
         {
             ID = Interlocked.Increment(ref id);
             TankSize = tankSize;
             FoodType = foodType;
             WaterType = waterType;
-            CleaningCycle = cleaningCycle;
             Price = price;
-            FoodCycle = foodCycle;
+            FoodCycle = GetFoodCycle(foodType);
             IsClean = CleanTank();
             FeedFish = FishFeeded();
+            CleaningCycle = GetCleaningCycle(waterType, foodType);
             
             if (FishInTank == null)
             {
@@ -115,6 +115,45 @@ namespace FishTank
                 // der skal fodres
                 return false;
             }
+        }
+        
+        /*
+        public int GetFishCount()
+        {
+            return FishInTank.Count;
+        }
+        */
+        
+        public int GetCleaningCycle(Water tankwater, Food tankfood)
+        {
+            if (tankwater == Water.Saltwater)
+            {
+                if (tankfood == Food.Meat)
+                {
+                    return 48;
+                }
+                
+                return 72;
+            }
+            else
+            {
+                if (tankfood == Food.Meat)
+                {
+                    return 24;
+                }
+                
+                return 48;
+            }
+        }
+
+        public static int GetFoodCycle(Food foodType)
+        {
+            if (foodType == Food.Flakes)
+            {
+                return 12;
+            }
+
+            return 24;
         }
 
         public void AddFish(TankClass tank, FishClass fish)
