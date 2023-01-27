@@ -1,4 +1,5 @@
 ﻿using static System.Console;
+using System.Linq;
 using System.Threading;
 
 namespace FishTank
@@ -11,6 +12,8 @@ namespace FishTank
 
         public void ViewAllFish()
         {
+            Clear();
+
             WriteLine("Dan & Marks akvarium har følgende fisk i sortiment");
             WriteLine("**************************************************" + Environment.NewLine);
 
@@ -28,11 +31,35 @@ namespace FishTank
                 i++;
             }
 
-            ReturnToMainMenu();
+            WriteLine(Environment.NewLine + "Ønsker du at:");
+            WriteLine("1. Tilføje en fisk til soritment");
+            WriteLine("2. Fjerne en fisk fra sortiment");
+            WriteLine("3. Vende tilbage til hovedmenuen");
+
+            int menuChoice;
+            do
+            {
+                Write("Vælg en mulighed fra menuen: ");
+            } while (!Int32.TryParse(ReadLine(), out menuChoice) || menuChoice < 1 || menuChoice > 3);
+
+            switch (menuChoice)
+            {
+                case 1:
+                    break;
+                case 2:
+                    RemoveFishFromSortiment();
+                    break;
+                case 3:
+                    MenuClass menu = new MenuClass();
+                    menu.MainMenu();
+                    break;
+            }
         }
         
         public void ViewAllFishTanks()
         {
+            Clear();
+
             WriteLine("Dan & Marks akvarium har følgende fisketanke i sortiment");
             WriteLine("********************************************************" + Environment.NewLine);
 
@@ -64,7 +91,72 @@ namespace FishTank
                 WriteLine($"------------------------");
             }
 
-            ReturnToMainMenu();
+            WriteLine(Environment.NewLine + "Ønsker du at:");
+            WriteLine("1. Tilføje en fisk til soritment");
+            WriteLine("2. Fjerne en fisk fra sortiment");
+            WriteLine("3. Vende tilbage til hovedmenuen");
+
+            int menuChoice;
+            do
+            {
+                Write("Vælg en mulighed fra menuen: ");
+            } while (!Int32.TryParse(ReadLine(), out menuChoice) || menuChoice < 1 || menuChoice > 3);
+
+            switch (menuChoice)
+            {
+                case 1:
+                    break;
+                case 2:
+                    RemoveTankFromSortiment();
+                    break;
+                case 3:
+                    MenuClass menu = new MenuClass();
+                    menu.MainMenu();
+                    break;
+            }
+        }
+
+        public void RemoveFishFromSortiment()
+        {
+            ClearCurrentConsoleLine(5);
+
+            int fishIndex = 0;
+            bool bNameFound = false;
+            do
+            {
+                Write("Indtast navn på den fisk, du ønsker at fjerne: ");
+
+                foreach (FishClass fish in FishSortiment)
+                {
+                    if (fish.Name.ToLower() == ReadLine().ToLower())
+                    {
+                        fishIndex = FishSortiment.IndexOf(fish);
+                        bNameFound = true;
+                    }
+                }
+
+            } while (!bNameFound);
+
+            FishSortiment.RemoveAt(fishIndex);
+            WriteLine("Den ønskede fisk er nu fjernet fra sortiment. Tryk en tast for at vende tilbage til oversigten...");
+            ReadKey();
+            ViewAllFish();
+        }
+
+        public void RemoveTankFromSortiment()
+        {
+            ClearCurrentConsoleLine(5);
+
+            int i;
+            do
+            {
+                Write("Vælg det akvarium, du ønsker at fjerne: ");
+            } while (!Int32.TryParse(ReadLine(), out i));
+
+            TankSortiment.RemoveAt(i - 1);
+            WriteLine("Det ønskede akvarie er nu fjernet fra sortiment. Tryk en tast for at vende tilbage til oversigten...");
+            ReadKey();
+            ViewAllFishTanks();
         }
 
         public void AddTestFishToSortiment()
@@ -115,6 +207,19 @@ namespace FishTank
             WriteLine(Environment.NewLine + "Tryk en tast for at vende tilbage til hovedmenuen...");
             ReadKey();
             menu.MainMenu();
+        }
+        public void ClearCurrentConsoleLine(int iterations)
+        {
+            SetCursorPosition(0, CursorTop - iterations);
+
+            int currentLineCursor = CursorTop;
+            SetCursorPosition(0, CursorTop);
+            for (int i = 0; i < iterations; i++)
+            {
+                WriteLine(new string(' ', BufferWidth - 1));
+            }
+
+            SetCursorPosition(0, currentLineCursor);
         }
     }
 }
