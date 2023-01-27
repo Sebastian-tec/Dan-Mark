@@ -27,11 +27,20 @@
         {
             Age = DateTime.Now.Year - Born.Year;
             
+            if (Age <= 0)
+            {
+                Age = DateTime.Now.Month - Born.Month;
+
+                if (Age <= 0)
+                {
+                    Age = DateTime.Now.Day - Born.Day;
+                }
+            }
+
             if (DateTime.Now.DayOfYear < Born.DayOfYear)
             {
                 Age--;
             }
-            
             return Age;
         }
     }

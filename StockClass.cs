@@ -22,7 +22,7 @@ namespace FishTank
             {
                 WriteLine($"Fisk nr. { i + 1 }");
                 WriteLine($"Race: { fish.Name }");
-                WriteLine($"Alder: { fish.Age } år");
+                WriteLine($"Alder: {fish.Age} år");
                 WriteLine($"Pris: { fish.Price } DKK");
                 WriteLine($"Mad: { fish.FoodType }");
                 WriteLine($"Vand: { fish.WaterType }");
@@ -32,7 +32,7 @@ namespace FishTank
             }
 
             WriteLine(Environment.NewLine + "Ønsker du at:");
-            WriteLine("1. Tilføje en fisk til soritment");
+            WriteLine("1. Tilføje en fisk til sortiment");
             WriteLine("2. Fjerne en fisk fra sortiment");
             WriteLine("3. Vende tilbage til hovedmenuen");
 
@@ -71,7 +71,7 @@ namespace FishTank
                 WriteLine($"Mad: { item.FoodType }");
                 WriteLine($"Vand: { item.WaterType }");
                 WriteLine($"Rensecyklus: { item.CleaningCycle } timer");
-                WriteLine($"Pris: { item.Price } DKK");
+                WriteLine($"Pris: {item.Price:N2} DKK");
                 Write($"Fish types: ");
 
                 if (item.FishInTank == null || item.FishInTank.Count < 1)
@@ -207,10 +207,11 @@ namespace FishTank
             } while (!Decimal.TryParse(ReadLine(), out fishPrice));
 
             DateTime born;
+
             do
             {
                 Console.WriteLine("Hvornår er fisken født (dd-mm-yyyy)?");
-            } while (!DateTime.TryParse(ReadLine(), out born));
+            } while (!DateTime.TryParse(ReadLine(), out born) || born > DateTime.Now.AddMinutes(5));
 
             FishClass newFish = new FishClass(fishName, foodInput, waterType, fishPrice, born);
             
@@ -254,14 +255,8 @@ namespace FishTank
             if (waterChoice == 2)
                 waterType = Water.Saltwater;
 
-            decimal tankPrice;
-            do
-            {
-                Write("Indtast prisen på akvariet: ");
 
-            } while (!Decimal.TryParse(ReadLine(), out tankPrice));
-
-            TankClass newTank = new TankClass(tankSize, foodInput, waterType, tankPrice);
+            TankClass newTank = new TankClass(tankSize, foodInput, waterType);
             TankSortiment.Add(newTank);
 
             WriteLine("Akvariet er nu tilføjet til sortiment! Tryk en tast for at vende tilbage til menuen...");
@@ -301,13 +296,13 @@ namespace FishTank
             WriteLine("Tilføjer akvarier...");
             Thread.Sleep(1000);
 
-            TankClass tank1 = new TankClass(200, Food.Meat, Water.Freshwater, 2999m);
+            TankClass tank1 = new TankClass(200, Food.Meat, Water.Freshwater);
             TankSortiment.Add(tank1);
-            TankClass tank2 = new TankClass(100, Food.Flakes, Water.Saltwater,  1499m);
+            TankClass tank2 = new TankClass(100, Food.Flakes, Water.Saltwater);
             TankSortiment.Add(tank2);
-            TankClass tank3 = new TankClass(400, Food.Meat, Water.Saltwater, 8999m);
+            TankClass tank3 = new TankClass(400, Food.Meat, Water.Saltwater);
             TankSortiment.Add(tank3);
-            TankClass tank4 = new TankClass(1000, Food.Flakes, Water.Freshwater, 19999m);
+            TankClass tank4 = new TankClass(1000, Food.Flakes, Water.Freshwater);
             TankSortiment.Add(tank4);
         }
 

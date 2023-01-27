@@ -17,13 +17,13 @@ namespace FishTank
         public bool FeedFish              { get; set; }
         private static int id;
 
-        public TankClass(double tankSize, Food foodType, Water waterType, Decimal price)
+        public TankClass(double tankSize, Food foodType, Water waterType)
         {
             ID = Interlocked.Increment(ref id);
             TankSize = tankSize;
             FoodType = foodType;
             WaterType = waterType;
-            Price = price;
+            Price = CalcPrice();
             FoodCycle = GetFoodCycle(foodType);
             IsClean = CleanTank();
             FeedFish = FishFeeded();
@@ -156,6 +156,12 @@ namespace FishTank
             return 24;
         }
 
+        public decimal CalcPrice()
+        {
+            return (decimal)this.TankSize * 8.876M;
+        }
+
+        
         public void AddFish(TankClass tank, FishClass fish)
         {
             tank.FishInTank.Add(fish);
