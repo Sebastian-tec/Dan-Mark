@@ -9,7 +9,6 @@ namespace FishTank
 
         public void MainMenu()
         {
-            Clear();
             if (StockClass.TankSortiment.Count == 0)
             {
                 stock.AddTestAquariumsToSortiment();
@@ -18,7 +17,9 @@ namespace FishTank
             {
                 stock.AddTestFishToSortiment();
             }
-            
+
+            Clear();
+
             WriteLine("Velkommen til Dan & Marks akvarium!" + Environment.NewLine);
 
             WriteLine("Du har nu følgende valgmuligheder");

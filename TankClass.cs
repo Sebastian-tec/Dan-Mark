@@ -40,19 +40,18 @@ namespace FishTank
             if (tankId == 0)
             {
                 foreach (TankClass tank in StockClass.TankSortiment)
-                {        
+                {
                     if (tank.WaterType != fish.WaterType)
                     {
-                        Console.WriteLine("Fisken passede ikke i dette akvarie.");
-                        return;
+                        //WriteLine("Fisken passede ikke i dette akvarie.");
+                        continue;
                     }
-                    
+
                     if (tank.FoodType != fish.FoodType)
                     {
-                        Console.WriteLine("Fisken passede ikke i dette akvarie.");
-                        return;
+                        //WriteLine("Fisken passede ikke i dette akvarie.");
+                        continue;
                     }
-                    Console.WriteLine("Tilføjer fisk...");
                     tank.AddFish(tank, fish);
                 }
             }

@@ -1,4 +1,5 @@
 ﻿using static System.Console;
+using System.Threading;
 
 namespace FishTank
 {
@@ -45,13 +46,18 @@ namespace FishTank
                 WriteLine($"Pris: {item.Price} DKK");
                 Write($"Fish types: ");
 
-                if (item.FishInTank == null)
+                if (item.FishInTank == null || item.FishInTank.Count < 1)
                     WriteLine("Der er ikke nogen fisk i denne tank");
                 else
                 {
+                    int numFish = 1;
                     foreach (var fish in item.FishInTank)
                     {
-                        Write(fish.Name + ", ");
+                        if (numFish != item.FishInTank.Count)
+                            Write(fish.Name + ", ");
+                        else
+                            Write(fish.Name);
+                        numFish++;
                     }
                     WriteLine();
                 }
@@ -63,7 +69,8 @@ namespace FishTank
 
         public void AddTestFishToSortiment()
         {
-            
+            WriteLine("Tilføjer fisk...");
+            Thread.Sleep(1000);
             FishClass Pirania = new FishClass("Pirania", Food.Meat, Water.Freshwater, 200.99m, 24, DateTime.Now.AddDays(-3));
             FishSortiment.Add(Pirania);
             TankClass.AddFishToTank(Pirania);
@@ -89,6 +96,9 @@ namespace FishTank
 
         public void AddTestAquariumsToSortiment()
         {
+            WriteLine("Tilføjer akvarier...");
+            Thread.Sleep(1000);
+
             TankClass tank1 = new TankClass(200, Food.Meat, Water.Freshwater, 48, 2999m, 24);
             TankSortiment.Add(tank1);
             TankClass tank2 = new TankClass(100, Food.Flakes, Water.Saltwater, 72, 1499m, 12);
