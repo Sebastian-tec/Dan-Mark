@@ -120,22 +120,23 @@ namespace FishTank
         {
             ClearCurrentConsoleLine(5);
 
-            int fishIndex = 0;
-            bool bNameFound = false;
+            bool bfishFound = false;
+            int fishIndex = -1;
             do
             {
-                Write("Indtast navn på den fisk, du ønsker at fjerne: ");
+                Write("Indtast navn på den fisk, du ønsker at fjerne fra sortiment: ");
+                string fishName = ReadLine().ToLower();
 
                 foreach (FishClass fish in FishSortiment)
                 {
-                    if (fish.Name.ToLower() == ReadLine().ToLower())
-                    {
+                    if (fish.Name.ToLower() == fishName)
                         fishIndex = FishSortiment.IndexOf(fish);
-                        bNameFound = true;
-                    }
                 }
 
-            } while (!bNameFound);
+                if (fishIndex != -1)
+                    bfishFound = true;
+
+            } while (!bfishFound);
 
             FishSortiment.RemoveAt(fishIndex);
             WriteLine("Den ønskede fisk er nu fjernet fra sortiment. Tryk en tast for at vende tilbage til oversigten...");
