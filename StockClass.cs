@@ -120,46 +120,66 @@ namespace FishTank
 
         public void RemoveFishFromSortiment()
         {
-            ClearCurrentConsoleLine();
-
-            bool bfishFound = false;
-            int fishIndex = -1;
-            do
+            if (FishSortiment.Count >= 0)
             {
-                Write("Indtast navn på den fisk, du ønsker at fjerne fra sortiment: ");
-                string fishName = ReadLine().ToLower();
+                ClearCurrentConsoleLine();
 
-                foreach (FishClass fish in FishSortiment)
+                bool bfishFound = false;
+                int fishIndex = -1;
+                do
                 {
-                    if (fish.Name.ToLower() == fishName)
-                        fishIndex = FishSortiment.IndexOf(fish);
-                }
+                    Write("Indtast navn på den fisk, du ønsker at fjerne fra sortiment: ");
+                    string fishName = ReadLine().ToLower();
 
-                if (fishIndex != -1)
-                    bfishFound = true;
+                    foreach (FishClass fish in FishSortiment)
+                    {
+                        if (fish.Name.ToLower() == fishName)
+                            fishIndex = FishSortiment.IndexOf(fish);
+                    }
 
-            } while (!bfishFound);
+                    if (fishIndex != -1)
+                        bfishFound = true;
 
-            FishSortiment.RemoveAt(fishIndex);
-            WriteLine("Den ønskede fisk er nu fjernet fra sortiment. Tryk en tast for at vende tilbage til oversigten...");
-            ReadKey();
-            ViewAllFish();
+                } while (!bfishFound);
+
+                FishSortiment.RemoveAt(fishIndex);
+                WriteLine("Den ønskede fisk er nu fjernet fra sortiment. Tryk en tast for at vende tilbage til oversigten...");
+                ReadKey();
+                ViewAllFish();
+            }
+            else
+            {
+                WriteLine("Ingen fisk i sortimentet...");
+                Thread.Sleep(2000);
+                return;
+            }
+
         }
 
         public void RemoveTankFromSortiment()
         {
-            ClearCurrentConsoleLine();
-
-            int i;
-            do
+            if (TankSortiment.Count >= 0)
             {
-                Write("Vælg det akvarium, du ønsker at fjerne: ");
-            } while (!Int32.TryParse(ReadLine(), out i));
+                ClearCurrentConsoleLine();
 
-            TankSortiment.RemoveAt(i - 1);
-            WriteLine("Det ønskede akvarie er nu fjernet fra sortiment. Tryk en tast for at vende tilbage til oversigten...");
-            ReadKey();
-            ViewAllFishTanks();
+                int i;
+                do
+                {
+                    Write("Vælg det akvarium, du ønsker at fjerne: ");
+                } while (!Int32.TryParse(ReadLine(), out i));
+
+                TankSortiment.RemoveAt(i - 1);
+                WriteLine("Det ønskede akvarie er nu fjernet fra sortiment. Tryk en tast for at vende tilbage til oversigten...");
+                ReadKey();
+                ViewAllFishTanks();
+            }
+            else
+            {
+                WriteLine("Ingen akvarier i sortimentet...");
+                Thread.Sleep(2000);
+                return;
+            }
+
         }
 
         public void AddFishToSortiment()
@@ -210,7 +230,7 @@ namespace FishTank
 
             do
             {
-                Console.WriteLine("Hvornår er fisken født (dd-mm-yyyy)?");
+                WriteLine("Hvornår er fisken født (dd-mm-yyyy)?");
             } while (!DateTime.TryParse(ReadLine(), out born) || born > DateTime.Now.AddMinutes(5));
 
             FishClass newFish = new FishClass(fishName, foodInput, waterType, fishPrice, born);
@@ -318,7 +338,7 @@ namespace FishTank
         {
             int currentLineCursor = Console.CursorTop; // Get the current line
             Console.SetCursorPosition(0, Console.CursorTop); // Set the cursor to the start of the line
-            Console.WriteLine(new string(' ', Console.WindowWidth)); // Write a new line with the same length as the window
+            WriteLine(new string(' ', Console.WindowWidth)); // Write a new line with the same length as the window
             Console.SetCursorPosition(0, currentLineCursor); // Set the cursor to the start of the line
         }
     }

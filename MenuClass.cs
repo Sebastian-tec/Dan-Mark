@@ -37,10 +37,28 @@ namespace FishTank
             switch (menuChoice)
             {
                 case 1:
-                    stock.ViewAllFish();
+                    if (StockClass.FishSortiment.Count == 0)
+                    {
+                        WriteLine("Der er ingen fisk i sortimentet endnu.");
+                        Thread.Sleep(2000);
+                        MainMenu();
+                    }
+                    else
+                    {
+                        stock.ViewAllFish();
+                    }
                     break;
                 case 2:
-                    stock.ViewAllFishTanks();
+                    if (StockClass.TankSortiment.Count == 0)
+                    {
+                        WriteLine("Der er ingen akvarier i sortimentet endnu.");
+                        Thread.Sleep(2000);
+                        MainMenu();
+                    }
+                    else
+                    {
+                        stock.ViewAllFishTanks();
+                    }
                     break;
                 case 3:
                     Quit();
